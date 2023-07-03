@@ -2,34 +2,21 @@ import { useState } from "react";
 import "./index.css";
 
 export default function App() {
-  const [expanded, setExpanded] = useState(false);
-  function handleCollapse() {
-    setExpanded(!expanded);
-    console.log(expanded);
-  }
-
   return (
     <div>
-      <TextExpander
-        expandButtonText="Show more"
-        collapseButtonText="Show less"
-        buttonColor="blue"
-        collapsedNumWords={70}
-        onCollapse={handleCollapse}
-      >
+      <TextExpander>
         Space travel is the ultimate adventure! Imagine soaring past the stars
         and exploring new worlds. It's the stuff of dreams and science fiction,
         but believe it or not, space travel is a real thing. Humans and robots
         are constantly venturing out into the cosmos to uncover its secrets and
         push the boundaries of what's possible.
       </TextExpander>
-
+      <CollapseBtn>Show More</CollapseBtn>
       <TextExpander
         collapsedNumWords={20}
         expandButtonText="Show text"
         collapseButtonText="Collapse text"
         buttonColor="#ff6622"
-        onCollapse={handleCollapse}
       >
         Space travel requires some seriously amazing technology and
         collaboration between countries, private companies, and international
@@ -37,38 +24,30 @@ export default function App() {
         results are out of this world. Think about the first time humans stepped
         foot on the moon or when rovers were sent to roam around on Mars.
       </TextExpander>
-
+      <CollapseBtn>Show text</CollapseBtn>
       <TextExpander expanded={true} className="box">
         Space missions have given us incredible insights into our universe and
         have inspired future generations to keep reaching for the stars. Space
         travel is a pretty cool thing to think about. Who knows what we'll
         discover next!
       </TextExpander>
+      <CollapseBtn>Show More</CollapseBtn>
     </div>
   );
 }
 
 function TextExpander({
   expanded,
+  collapsedNumWords,
+  expandButtonText,
+  collapseButtonText,
   buttonColor,
   className,
   children,
-  expandButtonText,
-  collapseButtonText,
-  onCollapse,
-  collapsedNumWords,
 }) {
-  return (
-    <>
-      <div className={className}>
-        {expanded
-          ? children
-          : children.slice(0, children.length - collapsedNumWords)}
+  return <div>{children}</div>;
+}
 
-        <button style={{ color: buttonColor }} onClick={() => onCollapse()}>
-          {expanded ? "HOLA" : "CHAU"}
-        </button>
-      </div>
-    </>
-  );
+function CollapseBtn({ children }) {
+  return <> HOLA </>;
 }
